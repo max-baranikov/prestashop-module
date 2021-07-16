@@ -15,10 +15,11 @@ class RetailcrmCatalogTest extends RetailcrmTestCase
     public function testCatalog()
     {
         $this->assertInternalType('array', $this->data);
-        $this->assertCount(2, $this->data);
+        $this->assertCount(3, $this->data);
 
         $categories = $this->data[0];
         $products = $this->data[1];
+        $name = $this->data[2];
 
         $this->assertNotEmpty($categories);
         $this->assertTrue($products->valid());
@@ -40,6 +41,8 @@ class RetailcrmCatalogTest extends RetailcrmTestCase
             $this->assertRegExp('/http/', $product['url']);
             $this->assertArrayHasKey('price', $product);
         }
+
+        $this->assertNotEmpty($name);
     }
 
     public function testIsPricesWithTax()
